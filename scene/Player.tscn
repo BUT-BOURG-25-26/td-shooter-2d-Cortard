@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh3so4g0obmds"]
+
+[ext_resource type="Script" uid="uid://ust1ge5jqyjv" path="res://script/Player.gd" id="1_62i1b"]
+[ext_resource type="Texture2D" uid="uid://3bjdavys0auq" path="res://KennyAssets/SpaceShooterRedux/playerShip1_green.png" id="1_si3wx"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_62i1b"]
+points = PackedVector2Array(-47, -5.75, -37, 3.25, -12, -11.75, -8, -36.75, 8, -36.75, 11, -11.75, 36, 2.25, 47, -5.75, 45, 24.25, 42, 20.25, 13, 27.25, 7, 37.25, -7, 37.25, -13, 27.25, -42, 19.25, -46, 24.25)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_62i1b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_si3wx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.25)
+shape = SubResource("ConvexPolygonShape2D_62i1b")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
